@@ -2,22 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class PartnerShop extends Model
+class PartnerShop extends Authenticatable
 {
-    use HasFactory;
+use Notifiable;
 
-    protected $primaryKey = 'partner_shops_id';
-    protected $fillable = [
-        'partner_shops_name',
-        'partner_shops_email',
-        'partner_shops_password',
-        'partner_shops_address',
-        'partner_shops_township',
-        'partner_shops_region',
-        'contact_primary',
-        'contact_secondary',
-    ];
+protected $table = 'partner_shops';
+protected $primaryKey = 'partner_shops_id';
+
+protected $fillable = [
+'partner_shops_name',
+'partner_shops_email',
+'partner_shops_password',
+'partner_shops_address',
+'partner_shops_township',
+'partner_shops_region',
+'contact_primary',
+'contact_secondary',
+];
+
+protected $hidden = [
+'partner_shops_password',
+];
+
+public function getAuthPassword()
+{
+return $this->partner_shops_password;
+}
 }

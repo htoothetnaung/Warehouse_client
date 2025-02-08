@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id('partner_shops_id');
             $table->string('partner_shops_name', 255);
             $table->string('partner_shops_email', 30)->nullable();
-            $table->string('partner_shops_password', 30)->nullable();
+            $table->string('partner_shops_password', 255)->nullable();
             $table->string('partner_shops_address', 100)->nullable();
             $table->string('partner_shops_township', 30)->nullable();
             $table->string('partner_shops_region', 20)->nullable();

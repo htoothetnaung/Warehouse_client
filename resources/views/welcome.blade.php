@@ -69,23 +69,21 @@
             <!-- End Avatar Group -->
 
             <!-- Form -->
-            <form>
-                <div class="mx-auto max-w-2xl sm:flex sm:space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
+            <form action="{{ route('login.submit') }}" method="POST">
+                @csrf
+                <div class="mx-auto max-w-2xl sm:flex sm:space-x-3 p-3 bg-white border rounded-lg shadow-lg">
                     <div class="w-full pb-2 sm:pb-0">
-                        <label for="hs-hero-name-1" class="block text-sm font-medium dark:text-white"><span class="sr-only">Your email address</span></label>
-                        <input type="text" id="hs-hero-name-1" class="py-3 px-4 block w-full border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Your email address">
+                        <input type="email" name="email" class="py-3 px-4 block w-full border-transparent rounded-lg text-sm" placeholder="Your email address" required>
                     </div>
-                    <div class="pt-2 sm:pt-0 sm:ps-3 border-t border-gray-200 sm:border-t-0 sm:border-s w-full dark:border-neutral-700">
-                        <label for="hs-hero-email-1" class="block text-sm font-medium dark:text-white"><span class="sr-only">Your Password</span></label>
-                        <input type="email" id="hs-hero-email-1" class="py-3 px-4 block w-full border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Password">
+                    <div class="pt-2 sm:pt-0 sm:ps-3 border-t border-gray-200 sm:border-t-0 sm:border-s w-full">
+                        <input type="password" name="password" class="py-3 px-4 block w-full border-transparent rounded-lg text-sm" placeholder="Password" required>
                     </div>
                     <div class="whitespace-nowrap pt-2 sm:pt-0 grid sm:block">
-                        <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
-                            Get started
-                        </a>
+                        <button type="submit" class="py-3 px-4 inline-flex justify-center items-center bg-blue-600 text-white rounded-lg">Login</button>
                     </div>
                 </div>
             </form>
+
             <!-- End Form -->
 
             <!-- SVG Element -->
