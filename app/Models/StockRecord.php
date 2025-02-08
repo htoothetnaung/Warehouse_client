@@ -11,8 +11,7 @@ class StockRecord extends Model
 
     protected $fillable = [
         'record_date',
-        'category',
-        'model',
+        'product_id',
         'warehouse_branch',
         'opening_balance',
         'received',
@@ -20,6 +19,11 @@ class StockRecord extends Model
         'closing_balance',
         'system_users_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 
     public function systemUser()
     {

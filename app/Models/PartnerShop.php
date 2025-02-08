@@ -23,6 +23,7 @@ protected $fillable = [
 'contact_secondary',
 ];
 
+
 protected $hidden = [
 'partner_shops_password',
 ];
@@ -31,4 +32,5 @@ public function getAuthPassword()
 {
 return $this->partner_shops_password;
 }
+
 }

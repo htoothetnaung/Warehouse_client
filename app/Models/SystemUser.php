@@ -16,4 +16,5 @@ class SystemUser extends Model
         'email',
         'phone',
     ];
+
 }

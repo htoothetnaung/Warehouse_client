@@ -15,7 +15,7 @@
             <div class="flex items-center justify-between">
                 <a class="flex-none text-xl font-semibold dark:text-white focus:outline-none focus:opacity-80" href="#" aria-label="Brand">
         <span class="inline-flex items-center gap-x-2 text-xl font-semibold dark:text-white">
-          <img class="w-10 h-auto" src="https://cdn.vectorstock.com/i/500p/59/50/mt-business-logo-design-vector-15225950.jpg" alt="Logo">
+          <img class="w-40 h-auto" src="{{asset('logo.png')}}" alt="Logo">
           MyanTech
         </span>
                 </a>

@@ -13,11 +13,7 @@ class SalesInvoice extends Model
         'sale_date',
         'invoice_no',
         'partner_shops_id',
-        'item_name',
-        'brand',
-        'category',
-        'product_segment',
-        'product_serial_number',
+        'product_id',
         'unit_price_mmk',
         'cash_back_mmk',
         'quantity',
@@ -28,5 +24,10 @@ class SalesInvoice extends Model
     public function partnerShop()
     {
         return $this->belongsTo(PartnerShop::class, 'partner_shops_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
