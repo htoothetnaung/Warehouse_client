@@ -35,6 +35,13 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('partner_shops_id')
+                  ->nullable()
+                  ->constrained('partner_shops', 'partner_shops_id')
+                  ->onDelete('set null');
+        });
     }
 
     /**
@@ -45,5 +52,10 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['partner_shops_id']);
+            $table->dropColumn('partner_shops_id');
+        });
     }
 };

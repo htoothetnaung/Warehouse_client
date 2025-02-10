@@ -5,6 +5,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\OrderHistoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,9 +25,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/customerhistory', function () {
         return view('customerhistory');
-    });
+    }); 
 
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::get('/orderhistory', [OrderHistoryController::class, 'index'])->name('orderhistory.index');
+    Route::post('/complaints', [OrderHistoryController::class, 'store'])->name('complaints.store');
 });
 
 Route::get('/products/filter', function (Request $request) {
@@ -53,3 +58,5 @@ Route::get('/products/details/{id}', function ($id) {
         'latest_closing_balance' => $latestStockRecord ? $latestStockRecord->closing_balance : 'N/A'
     ]);
 });
+
+Route::get('/sales/{id}', [SaleController::class, 'show'])->name('sales.show');
