@@ -22,6 +22,16 @@ class SalesInvoiceSeeder extends Seeder
             ],
             [
                 'sale_date' => '2024-12-30',
+                'invoice_no' => '7126',
+                'partner_shops_id' => 1,
+                'product_id' => 2,
+                'cash_back_mmk' => 0,
+                'quantity' => 2,
+                'total_mmk' => 5390000,
+                'remarks' => 'Space Black 1, Silver 2',
+            ],
+            [
+                'sale_date' => '2024-12-30',
                 'invoice_no' => '7127',
                 'partner_shops_id' => 2,
                 'product_id' => 2,

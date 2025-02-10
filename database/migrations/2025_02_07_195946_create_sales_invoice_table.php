@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('sales_invoices', function (Blueprint $table) {
             $table->id();
             $table->date('sale_date');
-            $table->string('invoice_no', 20)->unique();
+            $table->string('invoice_no', 20);
             $table->foreignId('partner_shops_id')->constrained('partner_shops', 'partner_shops_id')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->decimal('cash_back_mmk', 15, 2)->default(0.00);

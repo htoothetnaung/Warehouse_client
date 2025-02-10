@@ -35,12 +35,21 @@ $products = Product::all();
 
                                     <!-- Add to Cart Button (Aligned to the Right) -->
                                     <div class="ml-auto">
-                                        <button id="cart-btn" class="relative">
-                                            <span class="text-gray-500">Shopping Cart</span>
-                                            <span id="cart-notification" class="hidden animate-ping absolute inline-flex size-full rounded-full bg-red-400 opacity-75 dark:bg-red-600"></span>
-                                            <span id="cart-count" class="relative inline-flex rounded-full size-3 bg-red-500"></span>
+                                        <button type="button" class="m-1 ms-0 relative inline-flex justify-center items-center size-[46px] text-sm font-semibold rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="m5 11 4-7"></path>
+                                                <path d="m19 11-4-7"></path>
+                                                <path d="M2 11h20"></path>
+                                                <path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
+                                                <path d="m9 11 1 9"></path>
+                                                <path d="M4.5 15.5h15"></path>
+                                                <path d="m15 11-1 9"></path>
+                                            </svg>
+                                            <span class="flex absolute top-0 end-0 size-3 -mt-1.5 -me-1.5">
+                            <span class="animate-ping absolute inline-flex size-full rounded-full bg-red-400 opacity-75 dark:bg-red-600"></span>
+                            <span class="relative inline-flex rounded-full size-3 bg-red-500"></span>
+                        </span>
                                         </button>
-
                                     </div>
                                 </nav>
                             </div>
@@ -305,7 +314,5 @@ $products = Product::all();
                 });
             });
         });
-
-
     </script>
 </x-dashboard>
