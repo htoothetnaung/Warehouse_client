@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('category', 100);
             $table->string('product_segment', 100);
             $table->string('product_serial_number', 255)->unique();
+            $table->decimal('unit_price_mmk', 15, 2);
             $table->string('product_image_url', 255)->nullable(); // Stores image path
             $table->timestamps();
         });

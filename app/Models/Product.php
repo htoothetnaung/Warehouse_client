@@ -15,6 +15,7 @@ class Product extends Model
         'category',
         'product_segment',
         'product_serial_number',
+        'unit_price_mmk',
         'product_image_url',
     ];
 
@@ -30,8 +31,6 @@ class Product extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->product_image_url
-            ? asset('storage/' . $this->product_image_url)
-            : asset('images/default-product.png'); // Default image fallback
+        return $this->product_image_url;
     }
 }

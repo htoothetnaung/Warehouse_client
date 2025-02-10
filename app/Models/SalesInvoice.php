@@ -14,7 +14,6 @@ class SalesInvoice extends Model
         'invoice_no',
         'partner_shops_id',
         'product_id',
-        'unit_price_mmk',
         'cash_back_mmk',
         'quantity',
         'total_mmk',

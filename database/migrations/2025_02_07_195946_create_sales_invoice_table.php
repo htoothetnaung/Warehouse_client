@@ -14,10 +14,11 @@ return new class extends Migration
             $table->string('invoice_no', 20)->unique();
             $table->foreignId('partner_shops_id')->constrained('partner_shops', 'partner_shops_id')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->decimal('unit_price_mmk', 15, 2);
             $table->decimal('cash_back_mmk', 15, 2)->default(0.00);
             $table->integer('quantity');
             $table->decimal('total_mmk', 15, 2);
+            $table->boolean('delivered')->default(0);
+            $table->enum('payment', array('Pending','Paid','Cancel'))->default('Pending');
             $table->text('remarks')->nullable();
             $table->timestamps();
         });
