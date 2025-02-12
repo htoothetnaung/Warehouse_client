@@ -12,12 +12,22 @@ class OrderHistoryController extends Controller
 {
     public function index()
     {
+        // Get all sales for the authenticated user's partner shop
         $sales = SalesInvoice::where('partner_shops_id', Auth::user()->partner_shops_id)
-            ->with('product')
+            ->with(['product', 'complaints']) // Include relationships
             ->orderBy('sale_date', 'desc')
             ->get();
 
-        return view('customerhistory', compact('sales'));
+        // Get all complaints for these sales
+        $complaints = Complaint::whereIn('invoice_id', $sales->pluck('id'))
+            ->orderBy('complain_date', 'desc')
+            ->get();
+
+        // Get all products involved in these sales
+        $products = Product::whereIn('id', $sales->pluck('product_id'))
+            ->get();
+
+        return view('customerhistory', compact('sales', 'complaints', 'products'));
     }
 
     public function store(Request $request)
@@ -55,20 +65,21 @@ class OrderHistoryController extends Controller
                 
                 \Log::info('Creating complaint for product:', [
                     'product_id' => $productId,
-                    'invoice_id' => $latestInvoice->id,
+                    'invoice_no' => $latestInvoice->invoice_no,
                     'quantity' => $request->quantity[$productId]
                 ]);
 
                 Complaint::create([
-                    'invoice_id' => $latestInvoice->id,
+                    'invoice_no' => $latestInvoice->invoice_no,
                     'product_id' => $productId,
                     'product_name' => $product->item_name,
                     'quantity' => $request->quantity[$productId],
                     'issue_type' => $request->issue_type[$productId],
                     'customer_phone' => $request->customer_phone,
                     'remark' => $request->remarks,
-                    'status' => 'Pending',
+                    'status' => 'pending',
                     'complain_date' => now(),
+                    'owner_id' => Auth::user()->partner_shops_id,
                 ]);
             }
 

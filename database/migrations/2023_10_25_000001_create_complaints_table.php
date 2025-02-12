@@ -10,40 +10,22 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-
-            // invoice_id references invoices with cascade on delete.
-            $table->foreignId('invoice_id')->constrained('sales_invoices')->onDelete('cascade');
-
-            // product_id uses ON DELETE SET NULL, so it must be nullable.
-            $table->foreignId('product_id')
-                ->nullable()
-                ->constrained('products')
-                ->onDelete('set null');
-
-            // product_name
+            $table->string('invoice_no');  // Changed from invoice_id
+            $table->unsignedBigInteger('product_id');
             $table->string('product_name');
-
-            // quantity
             $table->integer('quantity');
-
-            // issue_type
             $table->string('issue_type');
-
-            // customer_phone
             $table->string('customer_phone');
-
-            // remark as a text field, allowing null if no remark is provided.
             $table->text('remark')->nullable();
+            $table->string('status')->default('pending');
+            $table->timestamp('complain_date');
+            $table->unsignedBigInteger('owner_id');
+            $table->text('admin_response')->nullable();
+            $table->timestamps();
 
-            // status field with a default value of 'Pending'
-            $table->string('status', 50)->default('Pending');
-
-            // complain_date with default CURRENT_TIMESTAMP
-            $table->timestamp('complain_date')->useCurrent();
-
-            // created_at and updated_at columns mimicking MySQL's CURRENT_TIMESTAMP behaviors.
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            // Foreign key constraints
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('owner_id')->references('partner_shops_id')->on('partner_shops');
         });
     }
 
